@@ -56,7 +56,7 @@ class Games extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(20),
 /*                                 border: Border.all(
                                   color: fontColor,
                                 ), */

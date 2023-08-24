@@ -36,9 +36,9 @@ class _SignInState extends State<SignIn> {
   }
 
   pageSwitch() {
-      if (pageChange) {
-        widget.setNewPage();
-      }
+    if (pageChange) {
+      widget.setNewPage();
+    }
   }
 
   TextEditingController input = TextEditingController();
@@ -52,7 +52,7 @@ class _SignInState extends State<SignIn> {
           child: Stack(
             children: [
               LED(
-                color: Theme.of(context).primaryColorLight,
+                color: Theme.of(context).primaryColorLight.withOpacity(0.5),
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,
               ),
@@ -66,7 +66,14 @@ class _SignInState extends State<SignIn> {
                       await joinRequest(context);
                       pageSwitch();
                     },
-                    child: SizedBox(
+                    child: Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.1),
+                      child: Button(
+                        text: 'Join',
+                        border: null,
+                      ),
+                    ), /* SizedBox(
                       height: MediaQuery.of(context).size.height * 0.18,
                       width: MediaQuery.of(context).size.width,
                       child: Container(
@@ -85,7 +92,7 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                    ),
+                    ), */
                   ),
                 ],
               ),

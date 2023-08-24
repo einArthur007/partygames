@@ -20,10 +20,7 @@ class LED extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(40),
-            bottomRight: Radius.circular(40),
-          ),
+
           gradient: LinearGradient(
             begin: begin,
             end: end,
