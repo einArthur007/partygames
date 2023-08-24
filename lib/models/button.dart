@@ -15,15 +15,12 @@ class Button extends StatelessWidget {
       decoration: BoxDecoration(
         border: border,
       ),
-      child: Center(
         child: Text(
           text,
           style: TextStyle(
             color: Theme.of(context).primaryColorLight,
-            decoration: TextDecoration.underline,
           ),
         ),
-      ),
     );
   }
 }
