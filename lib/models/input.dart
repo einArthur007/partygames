@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
-  const Input({
+  Input({
     super.key,
     required this.labelText,
     required this.password,
     required this.controller,
+    this.hintText,
   });
   final String labelText;
+  String? hintText;
   final bool password;
   final TextEditingController controller;
 
@@ -23,17 +25,18 @@ class Input extends StatelessWidget {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-          color: Theme.of(context).shadowColor,
-        )),
+          borderSide: BorderSide(
+            color: Theme.of(context).shadowColor,
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Theme.of(context).primaryColorLight),
         ),
-        
         labelText: labelText,
         labelStyle: TextStyle(
           color: Theme.of(context).shadowColor,
         ),
+        hintText: hintText,
       ),
     );
   }
