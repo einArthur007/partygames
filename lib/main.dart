@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:partygames/pages/games.dart';
 import 'package:partygames/pages/signin.dart';
 import 'package:partygames/pages/designlayout.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

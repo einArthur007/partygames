@@ -28,7 +28,7 @@ class Layout extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  alignment: Alignment.topCenter,
+                  alignment: Alignment.center,
                   child: const Heading(
                     text: 'Partygames',
                   ),

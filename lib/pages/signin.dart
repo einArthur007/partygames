@@ -56,52 +56,28 @@ class _SignInState extends State<SignIn> {
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      setName();
-                      await joinRequest(context);
-                      pageSwitch();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.1),
-                      child: Button(
-                        text: 'Join',
-                        border: null,
-                      ),
-                    ), /* SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.18,
-                      width: MediaQuery.of(context).size.width,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40),
-                          ),
-                          color: Theme.of(context).focusColor,
-                        ),
-                        child: const Center(
-                          child: Button(
-                            text: 'Join',
-                            border: null,
-                          ),
-                        ),
-                      ),
-                    ), */
-                  ),
-                ],
+              Container(
+                alignment: Alignment.bottomCenter,
+                margin: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.1,
+                ),
+                child: Button(
+                  text: 'Join',
+                  border: null,
+                  onTap: () async {
+                    setName();
+                    await joinRequest(context);
+                    pageSwitch();
+                  },
+                ),
               ),
               Container(
                 alignment: Alignment.center,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                   child: Input(
-                    labelText: 'Username',
+                    labelText: 'Dein Name',
+                    hintText: 'z.B. Peter Pan',
                     password: false,
                     controller: input,
                   ),
