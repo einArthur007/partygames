@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         shadowColor: const Color.fromARGB(255, 100, 100, 100),
         hintColor: const Color.fromARGB(255, 150, 150, 150),
         cardColor: const Color.fromARGB(255, 20, 20, 20),
+        brightness: Brightness.dark,
       ),
       home: const Scaffold(
         resizeToAvoidBottomInset: false,
@@ -52,7 +53,11 @@ class _HomeState extends State<Home> {
         setState(() {});
       });
     }
-    if (pageCounter == 1) refresh = Games(fontColor: Theme.of(context).primaryColorLight,);
+    if (pageCounter == 1) {
+      refresh = Games(
+        fontColor: Theme.of(context).primaryColorLight,
+      );
+    }
 
     return Stack(
       children: [
