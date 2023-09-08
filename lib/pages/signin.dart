@@ -63,7 +63,6 @@ class _SignInState extends State<SignIn> {
                 ),
                 child: Button(
                   text: 'Join',
-                  border: null,
                   onTap: () async {
                     setName();
                     await joinRequest(context);

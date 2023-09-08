@@ -13,6 +13,8 @@ dependencies:
   shared_preferences: ^2.2.0
   page_transition: ^2.0.9
   web_socket_channel: ^2.4.0
+  html: ^0.15.4
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +31,8 @@ flutter:
   - family: Adlamd
     fonts:
       - asset: ./assets/ADLaMDisplay-Regular.ttf
+  assets:
+    - assets/Werewolf/Dorfbewohner.webp
+    - assets/Werewolf/1.png
+
+

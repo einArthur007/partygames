@@ -4,11 +4,9 @@ class Button extends StatelessWidget {
   const Button({
     super.key,
     required this.text,
-    required this.border,
     required this.onTap,
   });
   final String text;
-  final dynamic border;
   final Function() onTap;
 
   @override
@@ -23,7 +21,7 @@ class Button extends StatelessWidget {
           right: MediaQuery.of(context).size.width * 0.25,
         ),
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Theme.of(context).focusColor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(

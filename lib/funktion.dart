@@ -25,7 +25,7 @@ joinRequest(BuildContext context) async {
           ),
           child: Center(
             child: Text(
-              'you have to pick an username',
+              'Du musste einen Namen wählen, um einem Spiel Bei zu treten',
               style: TextStyle(
                 color: Theme.of(context).primaryColorDark,
               ),
@@ -50,3 +50,5 @@ int roundCounter() {
 joinGame() {
   print('joinGame');
 }
+
+final werewolfPlayer = List<String>.filled(0, 'Du', growable: true);

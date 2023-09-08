@@ -3,7 +3,9 @@ import 'package:partygames/models/led.dart';
 import 'package:partygames/models/heading.dart';
 
 class Layout extends StatelessWidget {
-  const Layout({super.key});
+  const Layout({super.key, required this.heading});
+
+final String heading;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,8 @@ class Layout extends StatelessWidget {
               children: [
                 Container(
                   alignment: Alignment.center,
-                  child: const Heading(
-                    text: 'Partygames',
+                  child: Heading(
+                    text: heading,
                   ),
                 ),
               ],

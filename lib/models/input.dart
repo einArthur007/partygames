@@ -37,6 +37,9 @@ class Input extends StatelessWidget {
           color: Theme.of(context).shadowColor,
         ),
         hintText: hintText,
+        hintStyle: TextStyle(
+          color: Theme.of(context).shadowColor,
+        ),
       ),
     );
   }

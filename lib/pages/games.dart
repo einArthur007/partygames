@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:partygames/models/button.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:convert';
+import 'package:partygames/global.dart';
+import 'package:http/http.dart' as http;
+import 'package:partygames/models/bottomsheet.dart';
 
 class Games extends StatefulWidget {
   const Games({
@@ -26,7 +29,7 @@ class _GamesState extends State<Games> {
 
   gameListener() async {
     WebSocketChannel wss = WebSocketChannel.connect(
-      Uri.parse('ws://192.168.2.113:8080'),
+      Uri.parse('ws://$hostURL:8080'),
     );
 
     wss.sink.add(jsonEncode({
@@ -48,48 +51,72 @@ class _GamesState extends State<Games> {
     );
   }
 
+  createGame(BuildContext context) async {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return BottomSheets();
+      },
+    );
+
+    // Uri url = Uri.parse('http://$hostURL:3000/create_game?game_type=werwolf');
+    // http.Response res = await http.get(url);
+    // print(res);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.78,
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.65,
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: ListView(
-                    key: ValueKey(games),
-                    physics: const BouncingScrollPhysics(),
-                    children: games.isEmpty
-                        ? const [
-                            Center(child: Text('noch keine Spiele vorhanden'))
-                          ]
-                        : games
-                            .map(
-                              (e) => Game(
-                                gameId: e['game_id'],
-                                playerCount: e['players'].length,
-                                gameType: e['game_type'],
-                              ),
-                            )
-                            .toList(),
+    return Stack(
+      children: [
+        Center(
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.78,
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      child: ListView(
+                        key: ValueKey(games),
+                        physics: const BouncingScrollPhysics(),
+                        children: games.isEmpty
+                            ? const [
+                                Center(
+                                    child: Text('noch keine Spiele vorhanden'))
+                              ]
+                            : games
+                                .map(
+                                  (e) => Game(
+                                    gameId: e['game_id'],
+                                    playerCount: e['players'].length,
+                                    gameType: e['game_type'],
+                                  ),
+                                )
+                                .toList(),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-              Button(
-                text: 'Spiel erstellen',
-                border: null,
-                onTap: () {},
-              ),
-            ],
+            ),
           ),
         ),
-      ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height * 0.1,
+          ),
+          child: Button(
+            text: 'Spiel erstellen',
+            onTap: () => createGame(context),
+          ),
+        ),
+      ],
     );
   }
 }

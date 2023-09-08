@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:partygames/games/werewolf/werewolfgame.dart';
+import 'package:partygames/games/werewolf/werewolflobby.dart';
 import 'package:partygames/pages/games.dart';
 import 'package:partygames/pages/signin.dart';
-import 'package:partygames/pages/designlayout.dart';
+import 'package:partygames/pages/layout.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -29,9 +31,9 @@ class MyApp extends StatelessWidget {
         cardColor: const Color.fromARGB(255, 20, 20, 20),
         brightness: Brightness.dark,
       ),
-      home: const Scaffold(
+      home: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Home(),
+        body: Werewolf(),
       ),
     );
   }
@@ -51,10 +53,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if (pageCounter == 0) {
-      refresh = SignIn(setNewPage: () {
-        pageCounter++;
-        setState(() {});
-      });
+      refresh = SignIn(
+        setNewPage: () {
+          pageCounter++;
+          setState(() {});
+        },
+      );
     }
     if (pageCounter == 1) {
       refresh = Games(
@@ -64,7 +68,7 @@ class _HomeState extends State<Home> {
 
     return Stack(
       children: [
-        const Layout(),
+        const Layout(heading: 'PartyGames'),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 250),
           child: refresh!,
