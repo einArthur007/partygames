@@ -6,12 +6,12 @@ import 'package:partygames/models/button.dart';
 import 'package:partygames/models/led.dart';
 
 class SignIn extends StatefulWidget {
-  SignIn({
+  const SignIn({
     super.key,
     required this.setNewPage,
   });
 
-  Function setNewPage;
+  final Function setNewPage;
 
   @override
   State<SignIn> createState() => _SignInState();

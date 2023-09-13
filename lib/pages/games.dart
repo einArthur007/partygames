@@ -58,6 +58,7 @@ class _GamesState extends State<Games> {
       Uri.parse(
           'http$https://$hostUrl:$request_PORT/create_game?game_type=werwold'),
     );
+    print(res.body);
     return true;
   }
 
