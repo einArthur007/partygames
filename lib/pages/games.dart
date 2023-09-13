@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:partygames/models/button.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:convert';
+
+import '../global.dart';
 
 class Games extends StatefulWidget {
   const Games({
@@ -21,12 +24,14 @@ class _GamesState extends State<Games> {
     super.initState();
   }
 
+  bool creatingGame = false;
+
   List<dynamic> games = [];
   bool listeningForGames = true;
 
   gameListener() async {
     WebSocketChannel wss = WebSocketChannel.connect(
-      Uri.parse('ws://192.168.2.113:8080'),
+      Uri.parse('ws$https://$hostUrl:$websocket_PORT'),
     );
 
     wss.sink.add(jsonEncode({
@@ -48,6 +53,14 @@ class _GamesState extends State<Games> {
     );
   }
 
+  Future<bool> createGame() async {
+    http.Response res = await http.get(
+      Uri.parse(
+          'http$https://$hostUrl:$request_PORT/create_game?game_type=werwold'),
+    );
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -56,9 +69,10 @@ class _GamesState extends State<Games> {
         child: Container(
           height: MediaQuery.of(context).size.height * 0.78,
           alignment: Alignment.center,
-          child: Column(
+          child: Stack(
             children: [
-              SizedBox(
+              Container(
+                alignment: Alignment.center,
                 height: MediaQuery.of(context).size.height * 0.65,
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
@@ -81,10 +95,22 @@ class _GamesState extends State<Games> {
                   ),
                 ),
               ),
-              Button(
-                text: 'Spiel erstellen',
-                border: null,
-                onTap: () {},
+              Container(
+                alignment: Alignment.bottomCenter,
+                margin: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.03,
+                ),
+                child: Button(
+                  text: creatingGame ? '...' : 'Spiel erstellen',
+                  border: null,
+                  onTap: () async {
+                    creatingGame = true;
+                    setState(() {});
+
+                    creatingGame = !(await createGame());
+                    setState(() {});
+                  },
+                ),
               ),
             ],
           ),
@@ -128,56 +154,63 @@ class Game extends StatelessWidget {
     return returnWidgets;
   }
 
+  joinGame() async {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        right: MediaQuery.of(context).size.width * 0.05,
-        left: MediaQuery.of(context).size.width * 0.05,
+        right: MediaQuery.of(context).size.width * 0.075,
+        left: MediaQuery.of(context).size.width * 0.075,
         top: 10,
         bottom: 10,
       ),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+      child: GestureDetector(
+        onTap: joinGame,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                gameType,
-                style: const TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 3),
-              Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    gameId.substring(0, 4),
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white.withOpacity(0.4),
+                    gameType,
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
                   ),
-                  ...fadeOutText(gameId.substring(4, 16), 0.4, 16),
+                  const SizedBox(height: 3),
+                  Row(
+                    children: [
+                      Text(
+                        gameId.substring(0, 4),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white.withOpacity(0.4),
+                        ),
+                      ),
+                      ...fadeOutText(gameId.substring(4, 16), 0.4, 16),
+                    ],
+                  ),
                 ],
+              ),
+              Text(
+                '$playerCount Spieler',
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ],
           ),
-          Text(
-            '$playerCount Spieler',
-            style: const TextStyle(
-              fontSize: 16,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
