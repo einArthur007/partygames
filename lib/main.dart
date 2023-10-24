@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         cardColor: const Color.fromARGB(255, 20, 20, 20),
         brightness: Brightness.dark,
       ),
-      home: Scaffold(
+      home: const Scaffold(
         resizeToAvoidBottomInset: false,
         body: Werewolf(),
       ),

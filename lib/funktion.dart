@@ -52,3 +52,7 @@ joinGame() {
 }
 
 final werewolfPlayer = List<String>.filled(0, 'Du', growable: true);
+
+int werewolfPageTransition = 0;
+
+double? werewolfTime;

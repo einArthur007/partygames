@@ -1,22 +1,42 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:partygames/models/button.dart';
+import 'package:partygames/games/werewolf/pages/blackscreen.dart';
+import 'package:partygames/games/werewolf/pages/getcard.dart';
+import 'package:partygames/funktion.dart';
 
-class Werewolf extends StatelessWidget {
-  Werewolf({super.key});
+class Werewolf extends StatefulWidget {
+  const Werewolf({super.key});
 
-  var intValue = Random().nextInt(10);
+  @override
+  State<Werewolf> createState() => _WerewolfState();
+}
+
+class _WerewolfState extends State<Werewolf> {
+  Widget? refresh;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Button(
-        onTap: () {
-          intValue;
-          print(intValue);
+    if (werewolfPageTransition == 0) {
+      refresh = const GetCard();
+      setState(() {});
+    }
+    if (werewolfPageTransition == 1) {
+      refresh = Blackscreen(
+        setNewPage: () {
+          werewolfPageTransition++;
+          setState(() {});
         },
-        text: 'bekomme eine Rolle',
-      ),
+      );
+      setState(() {});
+    }
+    return AnimatedSwitcher(
+      duration: const Duration(seconds: 5),
+      child: refresh!,
+      transitionBuilder: (child, animation) {
+        return ScaleTransition(
+          scale: animation,
+          child: child,
+        );
+      },
     );
   }
 }
