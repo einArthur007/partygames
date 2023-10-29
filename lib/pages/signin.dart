@@ -6,12 +6,12 @@ import 'package:partygames/models/button.dart';
 import 'package:partygames/models/led.dart';
 
 class SignIn extends StatefulWidget {
-  SignIn({
+  const SignIn({
     super.key,
     required this.setNewPage,
   });
 
-  Function setNewPage;
+  final Function setNewPage;
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -59,7 +59,7 @@ class _SignInState extends State<SignIn> {
               Container(
                 alignment: Alignment.bottomCenter,
                 margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.1,
+                  bottom: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Button(
                   text: 'Join',

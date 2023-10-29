@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
-  Input({
+  const Input({
     super.key,
     required this.labelText,
     required this.password,
@@ -9,7 +9,7 @@ class Input extends StatelessWidget {
     this.hintText,
   });
   final String labelText;
-  String? hintText;
+  final String? hintText;
   final bool password;
   final TextEditingController controller;
 

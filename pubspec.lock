@@ -112,6 +112,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
   html:
     dependency: "direct main"
     description:
@@ -120,6 +121,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.4"
+=======
+>>>>>>> refs/remotes/origin/main
   http:
     dependency: "direct main"
     description:
@@ -136,6 +139,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+<<<<<<< HEAD
   js:
     dependency: transitive
     description:
@@ -144,6 +148,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+=======
+>>>>>>> refs/remotes/origin/main
   lints:
     dependency: transitive
     description:
