@@ -13,13 +13,9 @@ dependencies:
   shared_preferences: ^2.2.0
   page_transition: ^2.0.9
   web_socket_channel: ^2.4.0
-<<<<<<< HEAD
   html: ^0.15.4
   http: ^1.1.0
   timer_count_down: ^2.2.2
-=======
-  http: ^1.1.0
->>>>>>> refs/remotes/origin/main
 
 dev_dependencies:
   flutter_test:

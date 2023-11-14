@@ -9,7 +9,7 @@ class WerewolfLobby extends StatelessWidget {
   WerewolfLobby({super.key});
 
   final channel = WebSocketChannel.connect(
-  Uri.parse('ws://$hostURL:8080'),
+  Uri.parse('ws://$hostUrl:8080'),
 );
 
   @override

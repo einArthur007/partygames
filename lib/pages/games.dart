@@ -34,11 +34,7 @@ class _GamesState extends State<Games> {
 
   gameListener() async {
     WebSocketChannel wss = WebSocketChannel.connect(
-<<<<<<< HEAD
-      Uri.parse('ws://$hostURL:8080'),
-=======
       Uri.parse('ws$https://$hostUrl:$websocket_PORT'),
->>>>>>> refs/remotes/origin/main
     );
 
     wss.sink.add(jsonEncode({
@@ -60,20 +56,6 @@ class _GamesState extends State<Games> {
     );
   }
 
-<<<<<<< HEAD
-  createGame(BuildContext context) async {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
-        return BottomSheets();
-      },
-    );
-
-    // Uri url = Uri.parse('http://$hostURL:3000/create_game?game_type=werwolf');
-    // http.Response res = await http.get(url);
-    // print(res);
-=======
   Future<bool> createGame() async {
     http.Response res = await http.get(
       Uri.parse(
@@ -81,12 +63,10 @@ class _GamesState extends State<Games> {
     );
     print(res.body);
     return true;
->>>>>>> refs/remotes/origin/main
   }
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Stack(
       children: [
         Center(
@@ -120,62 +100,26 @@ class _GamesState extends State<Games> {
                                 .toList(),
                       ),
                     ),
-=======
-    return Center(
-      child: Container(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.78,
-          alignment: Alignment.center,
-          child: Stack(
-            children: [
-              Container(
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height * 0.65,
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: ListView(
-                    key: ValueKey(games),
-                    physics: const BouncingScrollPhysics(),
-                    children: games.isEmpty
-                        ? const [
-                            Center(child: Text('noch keine Spiele vorhanden'))
-                          ]
-                        : games
-                            .map(
-                              (e) => Game(
-                                gameId: e['game_id'],
-                                playerCount: e['players'].length,
-                                gameType: e['game_type'],
-                              ),
-                            )
-                            .toList(),
->>>>>>> refs/remotes/origin/main
                   ),
                 ],
               ),
-<<<<<<< HEAD
             ),
-=======
-              Container(
-                alignment: Alignment.bottomCenter,
-                margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.03,
-                ),
-                child: Button(
-                  text: creatingGame ? '...' : 'Spiel erstellen',
-                  border: null,
-                  onTap: () async {
-                    creatingGame = true;
-                    setState(() {});
+          ),
+        ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height * 0.03,
+          ),
+          child: Button(
+            text: creatingGame ? '...' : 'Spiel erstellen',
+            onTap: () async {
+              creatingGame = true;
+              setState(() {});
 
-                    creatingGame = !(await createGame());
-                    setState(() {});
-                  },
-                ),
-              ),
-            ],
->>>>>>> refs/remotes/origin/main
+              creatingGame = !(await createGame());
+              setState(() {});
+            },
           ),
         ),
         Container(
@@ -185,7 +129,7 @@ class _GamesState extends State<Games> {
           ),
           child: Button(
             text: 'Spiel erstellen',
-            onTap: () => createGame(context),
+            onTap: () => createGame(),
           ),
         ),
       ],
