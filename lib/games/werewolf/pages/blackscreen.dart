@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Blackscreen extends StatelessWidget {
-  Blackscreen({
+  const Blackscreen({
     super.key,
-    required this.setNewPage,
   });
-  Function setNewPage;
 
   @override
   Widget build(BuildContext context) {

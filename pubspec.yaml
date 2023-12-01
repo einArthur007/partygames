@@ -33,7 +33,15 @@ flutter:
     fonts:
       - asset: ./assets/ADLaMDisplay-Regular.ttf
   assets:
-    - assets/Werewolf/Dorfbewohner.webp
-    - assets/Werewolf/1.png
+    - assets/Werewolf/betrunkener.png
+    - assets/Werewolf/doppelgaengerin.png
+    - assets/Werewolf/freimaurer.png
+    - assets/Werewolf/guenstling.png
+    - assets/Werewolf/raeuber.png
+    - assets/Werewolf/schlaflose.png
+    - assets/Werewolf/seherin.png
+    - assets/Werewolf/unruhestiffterin.png
+    - assets/Werewolf/werewolf.png
+
 
 

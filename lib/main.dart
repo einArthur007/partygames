@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:partygames/games/werewolf/werewolfgame.dart';
-import 'package:partygames/games/werewolf/werewolflobby.dart';
+import 'package:partygames/games/werewolf/pages/getcard.dart';
+import 'package:partygames/games/werewolf/select(werewolf).dart';
 import 'package:partygames/pages/games.dart';
 import 'package:partygames/pages/signin.dart';
 import 'package:partygames/pages/layout.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Werewolf(),
+        body: GetCard(),
       ),
     );
   }
