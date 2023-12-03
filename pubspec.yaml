@@ -35,13 +35,16 @@ flutter:
   assets:
     - assets/Werewolf/betrunkener.png
     - assets/Werewolf/doppelgaengerin.png
-    - assets/Werewolf/freimaurer.png
+    - assets/Werewolf/freimaurer1.png
+    - assets/Werewolf/freimaurer2.png
     - assets/Werewolf/guenstling.png
     - assets/Werewolf/raeuber.png
     - assets/Werewolf/schlaflose.png
     - assets/Werewolf/seherin.png
-    - assets/Werewolf/unruhestiffterin.png
-    - assets/Werewolf/werewolf.png
+    - assets/Werewolf/unruhestifterin1.png
+    - assets/Werewolf/unruhestifterin2.png
+    - assets/Werewolf/werewolf1.png
+    - assets/Werewolf/werewolf2.png
 
 
 

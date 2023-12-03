@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:partygames/models/button.dart';
+import 'package:partygames/models/led.dart';
+import 'package:partygames/pages/layout.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Select extends StatefulWidget {
   const Select({super.key});
@@ -6,6 +10,11 @@ class Select extends StatefulWidget {
   @override
   State<Select> createState() => _SelectState();
 }
+
+final channel = WebSocketChannel.connect(
+  Uri.parse(
+      'wss://echo.websocket.events'), // websocketserver ip muss noch da hin
+);
 
 final List<String> growableList = [];
 
@@ -28,11 +37,11 @@ List<Map<String, dynamic>> charakters = [
   },
   {
     'charakter': 'Freimaurer',
-    'image': 'freimaurer.png',
+    'image': 'freimaurer1.png',
   },
   {
     'charakter': 'Freimaurer',
-    'image': 'freimaurer.png',
+    'image': 'freimaurer2.png',
   },
   {
     'charakter': 'Seherin',
@@ -54,55 +63,66 @@ List<Map<String, dynamic>> charakters = [
     'charakter': 'Schlaflose',
     'image': 'schlaflose2.png',
   },
-  {
-    'charakter': 'Print',
-    'image': 'assets/add.png',
-  },
 ];
 
 class _SelectState extends State<Select> {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 4,
-      padding: const EdgeInsets.all(50),
-      crossAxisSpacing: 100,
-      mainAxisSpacing: 100,
-      childAspectRatio: (1 / 1.17),
+    return Stack(
       children: [
-        ...charakters.map(
-          (e) => GestureDetector(
-            onTap: () {
-              growableList.add(e['charakter'].toLowerCase());
-              setState(() {});
-            },
-            child: Column(
+        LED(
+          color: Theme.of(context).primaryColorLight,
+          begin: Alignment.bottomCenter,
+          end: Alignment.center,
+        ),
+        const Layout(heading: 'Charakter'),
+        Container(
+          alignment: Alignment.center,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: GridView.count(
+              crossAxisCount: 3,
+              padding: const EdgeInsets.all(40),
+              crossAxisSpacing: 70,
+              mainAxisSpacing: 70,
+              childAspectRatio: (1 / 1),
               children: [
-                Image(
-                  image: AssetImage('assets/Werewolf/${e['image']}'),
-                ),
-                Center(
-                  child: Text(
-                    e['charakter'],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    print(growableList);
-                  },
-                  child: Container(
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.green)),
-                    child: SizedBox(
-                      height: 20,
-                      width: 20,
+                ...charakters.map(
+                  (e) => GestureDetector(
+                    onTap: () {
+                      growableList.add(e['charakter'].toLowerCase());
+                      setState(() {});
+                    },
+                    child: Column(
+                      children: [
+                        Image(
+                          image: AssetImage('assets/Werewolf/${e['image']}'),
+                        ),
+                        Center(
+                          child: Text(
+                            e['charakter'],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
         ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height * 0.03),
+          child: Button(
+            onTap: () {
+              channel.sink.add('charakters_Werewolf:');
+              channel.sink.add(growableList);
+            },
+            text: 'Fertig',
+          ),
+        )
       ],
     );
   }

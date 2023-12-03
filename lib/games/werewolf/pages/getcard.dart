@@ -14,7 +14,7 @@ class GetCard extends StatefulWidget {
 }
 
 final channel = WebSocketChannel.connect(
-  Uri.parse('wss://echo.websocket.events'),
+  Uri.parse('wss://echo.websocket.events'), // websocketserver ip muss noch da hin
 );
 
 class _GetCardState extends State<GetCard> {
