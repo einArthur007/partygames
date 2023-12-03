@@ -7,7 +7,7 @@ class Select extends StatefulWidget {
   State<Select> createState() => _SelectState();
 }
 
-final growableList = <String>[];
+final List<String> growableList = [];
 
 List<Map<String, dynamic>> charakters = [
   {
