@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const Scaffold(
         resizeToAvoidBottomInset: false,
-        body: GetCard(),
+        body: Select(),
       ),
     );
   }
