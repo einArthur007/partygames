@@ -7,6 +7,62 @@ class Select extends StatefulWidget {
   State<Select> createState() => _SelectState();
 }
 
+<<<<<<< HEAD
+=======
+final List<String> growableList = [];
+
+List<Map<String, dynamic>> charakters = [
+  {
+    'charakter': 'Doppelgänger',
+    'image': 'doppelgaengerin.png',
+  },
+  {
+    'charakter': 'Werwolf',
+    'image': 'werewolf1.png',
+  },
+  {
+    'charakter': 'Werwolf',
+    'image': 'werewolf2.png',
+  },
+  {
+    'charakter': 'Günstling',
+    'image': 'guenstling.png',
+  },
+  {
+    'charakter': 'Freimaurer',
+    'image': 'freimaurer.png',
+  },
+  {
+    'charakter': 'Freimaurer',
+    'image': 'freimaurer.png',
+  },
+  {
+    'charakter': 'Seherin',
+    'image': 'seherin.png',
+  },
+  {
+    'charakter': 'Räuber',
+    'image': 'raeuber.png',
+  },
+  {
+    'charakter': 'Unruhestifterin',
+    'image': 'unruhestifterin1.png',
+  },
+  {
+    'charakter': 'Betrunkener',
+    'image': 'betrunkener.png',
+  },
+  {
+    'charakter': 'Schlaflose',
+    'image': 'schlaflose2.png',
+  },
+  {
+    'charakter': 'Print',
+    'image': 'assets/add.png',
+  },
+];
+
+>>>>>>> refs/remotes/origin/main
 class _SelectState extends State<Select> {
   @override
   Widget build(BuildContext context) {
@@ -110,13 +166,18 @@ class _SelectState extends State<Select> {
         ...charakters.map(
           (e) => GestureDetector(
             onTap: () {
+<<<<<<< HEAD
               e['onTap'];
               print('foo');
+=======
+              growableList.add(e['charakter'].toLowerCase());
+              setState(() {});
+>>>>>>> refs/remotes/origin/main
             },
             child: Column(
               children: [
                 Image(
-                  image: e['image'],
+                  image: AssetImage('assets/Werewolf/${e['image']}'),
                 ),
                 Center(
                   child: Text(
