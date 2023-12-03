@@ -12,87 +12,51 @@ final growableList = <String>[];
 List<Map<String, dynamic>> charakters = [
   {
     'charakter': 'Doppelgänger',
-    'image': const AssetImage('assets/Werewolf/doppelgaengerin.png'),
-    'onTap': () {
-      growableList.add('doppelgaenger');
-    },
+    'image': 'doppelgaengerin.png',
   },
   {
     'charakter': 'Werwolf',
-    'image': const AssetImage('assets/Werewolf/werewolf1.png'),
-    'onTap': () {
-      growableList.add('werewolf');
-    },
+    'image': 'werewolf1.png',
   },
   {
     'charakter': 'Werwolf',
-    'image': const AssetImage('assets/Werewolf/werewolf2.png'),
-    'onTap': () {
-      growableList.add('werewolf');
-    },
+    'image': 'werewolf2.png',
   },
   {
     'charakter': 'Günstling',
-    'image': const AssetImage('assets/Werewolf/guenstling.png'),
-    'onTap': () {
-      growableList.add('guenstling');
-    },
+    'image': 'guenstling.png',
   },
   {
     'charakter': 'Freimaurer',
-    'image': const AssetImage('assets/Werewolf/freimaurer.png'),
-    'onTap': () {
-      growableList.add('freimaurer');
-    },
+    'image': 'freimaurer.png',
   },
   {
     'charakter': 'Freimaurer',
-    'image': const AssetImage('assets/Werewolf/freimaurer.png'),
-    'onTap': () {
-      growableList.add('freimaurer');
-    },
+    'image': 'freimaurer.png',
   },
   {
     'charakter': 'Seherin',
-    'image': const AssetImage('assets/Werewolf/seherin.png'),
-    'onTap': () {
-      growableList.add('seherin');
-    },
+    'image': 'seherin.png',
   },
   {
     'charakter': 'Räuber',
-    'image': const AssetImage('assets/Werewolf/raeuber.png'),
-    'onTap': () {
-      growableList.add('raeuber');
-    },
+    'image': 'raeuber.png',
   },
   {
     'charakter': 'Unruhestifterin',
-    'image': const AssetImage('assets/Werewolf/unruhestifterin1.png'),
-    'onTap': () {
-      growableList.add('unruhestifterin');
-    },
+    'image': 'unruhestifterin1.png',
   },
   {
     'charakter': 'Betrunkener',
-    'image': const AssetImage('assets/Werewolf/betrunkener.png'),
-    'onTap': () {
-      growableList.add('betrunkener');
-    },
+    'image': 'betrunkener.png',
   },
   {
     'charakter': 'Schlaflose',
-    'image': const AssetImage('assets/Werewolf/schlaflose2.png'),
-    'onTap': () {
-      growableList.add('schlaflose');
-    },
+    'image': 'schlaflose2.png',
   },
   {
     'charakter': 'Print',
-    'image': const AssetImage('assets/add.png'),
-    'onTap': () {
-      print(growableList);
-    },
+    'image': 'assets/add.png',
   },
 ];
 
@@ -109,13 +73,13 @@ class _SelectState extends State<Select> {
         ...charakters.map(
           (e) => GestureDetector(
             onTap: () {
-              e['onTap'];
-// print('foo');
+              growableList.add(e['charakter'].toLowerCase());
+              setState(() {});
             },
             child: Column(
               children: [
                 Image(
-                  image: e['image'],
+                  image: AssetImage('assets/Werewolf/${e['image']}'),
                 ),
                 Center(
                   child: Text(
