@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:partygames/models/button.dart';
 import 'package:partygames/models/led.dart';
@@ -16,52 +17,130 @@ final channel = WebSocketChannel.connect(
       'wss://echo.websocket.events'), // websocketserver ip muss noch da hin
 );
 
+Color border = Colors.transparent;
+
 final List<String> growableList = [];
+
+List<Widget> createCharakterWidgets(Function setState, context) {
+  List<Widget> returnList = [];
+  for (int i = 0; i < charakters.length; i++) {
+    returnList.add(
+      GestureDetector(
+        onTap: () {
+          int werewolfNumber = Random().nextInt(5) + 1;
+          growableList.add(charakters[i]['charakter'].toLowerCase());
+          if (charakters[i]['charakter'] == 'Dorfbewohner') {
+            charakters.insert(
+              13,
+              {
+                'charakter': 'Dorfbewohner',
+                'image': 'dorfbewohner$werewolfNumber.png',
+                'removeable': true,
+                'border': Theme.of(context).primaryColorLight,
+              },
+            );
+          }
+          if (charakters[i]['charakter'] == 'Werwolf') {
+            charakters.insert(
+              2,
+              {
+                'charakter': 'Werwolf',
+                'image': 'werewolf$werewolfNumber.png',
+                'removeable': true,
+                'border': Theme.of(context).primaryColorLight,
+              },
+            );
+          }
+
+
+
+          setState(() {});
+        },
+        onDoubleTap: () {
+          if (charakters[i]['removeable']) {
+            charakters.removeAt(i);
+            growableList.removeAt(i);
+          }
+          setState(() {});
+        },
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage('assets/Werewolf/${charakters[i]['image']}'),
+            ),
+            Center(
+              child: Text(
+                charakters[i]['charakter'],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  return returnList;
+}
 
 List<Map<String, dynamic>> charakters = [
   {
     'charakter': 'Doppelgänger',
     'image': 'doppelgaengerin.png',
+    'removeable': false,
   },
   {
     'charakter': 'Werwolf',
     'image': 'werewolf1.png',
-  },
-  {
-    'charakter': 'Werwolf',
-    'image': 'werewolf2.png',
+    'removeable': false,
   },
   {
     'charakter': 'Günstling',
     'image': 'guenstling.png',
+    'removeable': false,
   },
   {
     'charakter': 'Freimaurer',
     'image': 'freimaurer1.png',
-  },
-  {
-    'charakter': 'Freimaurer',
-    'image': 'freimaurer2.png',
+    'removeable': false,
   },
   {
     'charakter': 'Seherin',
     'image': 'seherin.png',
+    'removeable': false,
   },
   {
     'charakter': 'Räuber',
     'image': 'raeuber.png',
+    'removeable': false,
   },
   {
     'charakter': 'Unruhestifterin',
     'image': 'unruhestifterin1.png',
+    'removeable': false,
   },
   {
     'charakter': 'Betrunkener',
     'image': 'betrunkener.png',
+    'removeable': false,
   },
   {
     'charakter': 'Schlaflose',
-    'image': 'schlaflose2.png',
+    'image': 'schlaflose.png',
+    'removeable': false,
+  },
+  {
+    'charakter': 'Jäger',
+    'image': 'jaeger.png',
+    'removeable': false,
+  },
+  {
+    'charakter': 'Gerber',
+    'image': 'gerber.png',
+    'removeable': false,
+  },
+  {
+    'charakter': 'Dorfbewohner',
+    'image': 'dorfbewohner1.png',
+    'removeable': false,
   },
 ];
 
@@ -85,28 +164,9 @@ class _SelectState extends State<Select> {
               padding: const EdgeInsets.all(40),
               crossAxisSpacing: 70,
               mainAxisSpacing: 70,
-              childAspectRatio: (1 / 1),
+              childAspectRatio: (0.90 / 1),
               children: [
-                ...charakters.map(
-                  (e) => GestureDetector(
-                    onTap: () {
-                      growableList.add(e['charakter'].toLowerCase());
-                      setState(() {});
-                    },
-                    child: Column(
-                      children: [
-                        Image(
-                          image: AssetImage('assets/Werewolf/${e['image']}'),
-                        ),
-                        Center(
-                          child: Text(
-                            e['charakter'],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                ...createCharakterWidgets(setState, context),
               ],
             ),
           ),
