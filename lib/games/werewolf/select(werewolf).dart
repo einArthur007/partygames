@@ -53,7 +53,17 @@ List<Widget> createCharakterWidgets(Function setState, context) {
               },
             );
           }
-
+          if (charakters[i]['charakter'] == 'Freimaurer') {
+            charakters.insert(
+              13,
+              {
+                'charakter': 'Freimaurer',
+                'image': 'freimaurer$werewolfNumber.png',
+                'removeable': true,
+                'border': Theme.of(context).primaryColorLight,
+              },
+            );
+          }
           setState(() {});
         },
         onDoubleTap: () {
@@ -147,48 +157,49 @@ List<Map<String, dynamic>> charakters = [
 class _SelectState extends State<Select> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        LED(
-          color: Theme.of(context).primaryColorLight,
-          begin: Alignment.bottomCenter,
-          end: Alignment.center,
-        ),
-        const Layout(heading: 'Charakter'),
-        Container(
-          alignment: Alignment.center,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
-            child: GridView.count(
-              crossAxisCount: 3,
-              padding: const EdgeInsets.all(40),
-              crossAxisSpacing: 70,
-              mainAxisSpacing: 70,
-              childAspectRatio: (0.90 / 1),
-              children: [
-                ...createCharakterWidgets(setState, context),
-              ],
+    return Scaffold(
+      body: Stack(
+        children: [
+          LED(
+            color: Theme.of(context).primaryColorLight,
+            begin: Alignment.bottomCenter,
+            end: Alignment.center,
+          ),
+          const Layout(heading: 'Charakter'),
+          Container(
+            alignment: Alignment.center,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.63,
+              child: GridView.count(
+                crossAxisCount: 2,
+                padding: const EdgeInsets.all(20),
+                crossAxisSpacing: 70,
+                mainAxisSpacing: 70,
+                childAspectRatio: (0.90 / 1.2),
+                children: [
+                  ...createCharakterWidgets(setState, context),
+                ],
+              ),
             ),
           ),
-        ),
-        Container(
-          alignment: Alignment.bottomCenter,
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * 0.03),
-          child: Button(
-            onTap: () {
-              channel.sink.add('charakters_Werewolf:');
-              channel.sink.add(growableList);
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: const GetCard()));
-            },
-            text: 'Fertig',
-          ),
-        )
-      ],
+          Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * 0.03),
+            child: Button(
+              onTap: () {
+                channel.sink.add('charakters_Werewolf:');
+                channel.sink.add(growableList);
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade, child: const GetCard()));
+              },
+              text: 'Fertig',
+            ),
+          )
+        ],
+      ),
     );
   }
 }

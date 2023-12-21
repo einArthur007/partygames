@@ -52,7 +52,7 @@ class _SignInState extends State<SignIn> {
           child: Stack(
             children: [
               LED(
-                color: Theme.of(context).primaryColorLight.withOpacity(0.5),
+                color: Theme.of(context).primaryColorLight,
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,
               ),

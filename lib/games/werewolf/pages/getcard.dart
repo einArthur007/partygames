@@ -14,55 +14,58 @@ class GetCard extends StatefulWidget {
 }
 
 final channel = WebSocketChannel.connect(
-  Uri.parse('wss://echo.websocket.events'), // websocketserver ip muss noch da hin
+  Uri.parse(
+      'wss://echo.websocket.events'), // websocketserver ip muss noch da hin
 );
 
 class _GetCardState extends State<GetCard> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        LED(
-          color: Theme.of(context).primaryColorLight,
-          begin: Alignment.bottomCenter,
-          end: Alignment.center,
-        ),
-        const Layout(heading: 'Doppelgängerin'), // jewailiger Charakter
-        Container(
-          alignment: Alignment.center,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: const Blackscreen()));
-              channel.sink.add('ready_Werewolf');
-            },
-            child: Stack(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: const RandomCard(),
-                ),
-                // StreamBuilder(
-                //   stream: channel.stream,
-                //   builder: (context, snapshot) {
-                //     return Text(snapshot.hasData ? '${snapshot.data}' : ''); // aktion mit Oskar besprechen, wie das funktioniert
-                //   },
-                // ),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  padding: const EdgeInsets.only(
-                    bottom: 20,
+    return Scaffold(
+      body: Stack(
+        children: [
+          LED(
+            color: Theme.of(context).primaryColorLight,
+            begin: Alignment.bottomCenter,
+            end: Alignment.center,
+          ),
+          const Layout(heading: 'Doppelgängerin'), // jewailiger Charakter
+          Container(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        child: const Blackscreen()));
+                channel.sink.add('ready_Werewolf');
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: const RandomCard(),
                   ),
-                  child: const Text('tippen um bereit zu machen'),
-                ),
-              ],
+                  // StreamBuilder(
+                  //   stream: channel.stream,
+                  //   builder: (context, snapshot) {
+                  //     return Text(snapshot.hasData ? '${snapshot.data}' : ''); // aktion mit Oskar besprechen, wie das funktioniert
+                  //   },
+                  // ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.only(
+                      bottom: 20,
+                    ),
+                    child: const Text('tippen um bereit zu machen'),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
     ;
   }

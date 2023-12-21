@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:partygames/models/bottomsheet.dart';
+import 'package:partygames/models/led.dart';
+import 'package:partygames/models/sheets.dart';
 import 'package:partygames/models/button.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:convert';
@@ -58,7 +59,7 @@ class _GamesState extends State<Games> {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
-        return const BottomSheets();
+        return const BottomSheet1();
       },
     );
     http.Response res = await http.get(
@@ -91,7 +92,8 @@ class _GamesState extends State<Games> {
                         children: games.isEmpty
                             ? const [
                                 Center(
-                                    child: Text('noch keine Spiele vorhanden'))
+                                  child: Text('noch keine Spiele vorhanden'),
+                                ),
                               ]
                             : games
                                 .map(
@@ -115,15 +117,11 @@ class _GamesState extends State<Games> {
           margin: EdgeInsets.only(
             bottom: MediaQuery.of(context).size.height * 0.03,
           ),
-/*           child: Button(
-            text: creatingGame ? '...' : 'Spiel erstellen',
-            onTap: () async {
-              creatingGame = true;
-              setState(() {});
-              creatingGame = !(await createGame());
-              setState(() {});
-            },
-          ), */
+        ),
+        LED(
+          color: Theme.of(context).primaryColorLight,
+          begin: Alignment.bottomCenter,
+          end: Alignment.center,
         ),
         Container(
           alignment: Alignment.bottomCenter,

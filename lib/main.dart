@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
     return Stack(
       children: [
         const Layout(heading: 'PartyGames'),
-        AnimatedSwitcher(
+         AnimatedSwitcher(
           duration: const Duration(milliseconds: 250),
           child: refresh!,
           transitionBuilder: (child, animation) {

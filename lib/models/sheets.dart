@@ -3,14 +3,14 @@ import 'package:partygames/models/choosegame/chooseWerewolf.dart';
 import 'package:partygames/models/choosegame/chooseDixit.dart';
 import 'package:partygames/models/dot.dart';
 
-class BottomSheets extends StatefulWidget {
-  const BottomSheets({super.key});
+class BottomSheet1 extends StatefulWidget {
+  const BottomSheet1({super.key});
 
   @override
-  State<BottomSheets> createState() => _BottomSheetsState();
+  State<BottomSheet1> createState() => _BottomSheet1State();
 }
 
-class _BottomSheetsState extends State<BottomSheets> {
+class _BottomSheet1State extends State<BottomSheet1> {
   TextEditingController input = TextEditingController();
   final PageController controller = PageController();
   Color color0 = const Color.fromARGB(255, 0, 255, 0);
@@ -40,7 +40,7 @@ class _BottomSheetsState extends State<BottomSheets> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.3,
       child: Container(
         alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
@@ -96,6 +96,21 @@ class _BottomSheetsState extends State<BottomSheets> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TopSheet1 extends StatelessWidget {
+  const TopSheet1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.2,
+      child: Container(
+        color: Colors.amber,
       ),
     );
   }

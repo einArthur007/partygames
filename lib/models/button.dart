@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:partygames/models/BounceElement.dart';
 
 class Button extends StatelessWidget {
   const Button({
@@ -11,24 +12,26 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.only(
-          top: 25,
-          bottom: 25,
-          left: MediaQuery.of(context).size.width * 0.25,
-          right: MediaQuery.of(context).size.width * 0.25,
-        ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).focusColor,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 20,
-            color: Theme.of(context).primaryColorLight,
+    return BounceElement(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 25,
+            bottom: 25,
+            left: MediaQuery.of(context).size.width * 0.25,
+            right: MediaQuery.of(context).size.width * 0.25,
+          ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).focusColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 20,
+              color: Theme.of(context).primaryColorLight,
+            ),
           ),
         ),
       ),

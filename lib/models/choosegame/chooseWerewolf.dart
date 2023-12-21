@@ -10,10 +10,11 @@ class ChooseWerewolf extends StatefulWidget {
   @override
   State<ChooseWerewolf> createState() => _ChooseWerewolfState();
 }
+
 @override
-    final channel = WebSocketChannel.connect(
-      Uri.parse('wss://echo.websocket.events'),
-    );
+final channel = WebSocketChannel.connect(
+  Uri.parse('wss://echo.websocket.events'),
+);
 
 class _ChooseWerewolfState extends State<ChooseWerewolf> {
   @override
@@ -34,10 +35,12 @@ class _ChooseWerewolfState extends State<ChooseWerewolf> {
               },
             );
             Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: WerewolfLobby()));
+              context,
+              PageTransition(
+                type: PageTransitionType.fade,
+                child: const WerewolfLobby(),
+              ),
+            );
           },
         ),
       ),

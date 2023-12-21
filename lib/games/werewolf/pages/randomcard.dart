@@ -5,6 +5,10 @@ class RandomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset('assets/Werewolf/1.png');
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Image.asset('assets/Werewolf/doppelgaengerin.png'),
+    );
   }
 }
