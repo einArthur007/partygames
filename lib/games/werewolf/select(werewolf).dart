@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:partygames/games/werewolf/pages/getcard.dart';
 import 'package:partygames/models/button.dart';
 import 'package:partygames/models/led.dart';
 import 'package:partygames/pages/layout.dart';
@@ -51,8 +53,6 @@ List<Widget> createCharakterWidgets(Function setState, context) {
               },
             );
           }
-
-
 
           setState(() {});
         },
@@ -179,6 +179,11 @@ class _SelectState extends State<Select> {
             onTap: () {
               channel.sink.add('charakters_Werewolf:');
               channel.sink.add(growableList);
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade,
+                      child: const GetCard()));
             },
             text: 'Fertig',
           ),

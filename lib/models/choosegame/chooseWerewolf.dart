@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:partygames/funktion.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:partygames/games/werewolf/lobby(werewolf).dart';
 import 'package:partygames/models/button.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:partygames/global.dart';
 
 class ChooseWerewolf extends StatefulWidget {
-  ChooseWerewolf({super.key});
+  const ChooseWerewolf({super.key});
 
   @override
   State<ChooseWerewolf> createState() => _ChooseWerewolfState();
@@ -33,11 +33,14 @@ class _ChooseWerewolfState extends State<ChooseWerewolf> {
                 return Text(snapshot.hasData ? '${snapshot.data}' : '');
               },
             );
+            Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade,
+                      child: WerewolfLobby()));
           },
         ),
       ),
     );
   }
 }
-
-//  ws://$hostURL:8080

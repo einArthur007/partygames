@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:partygames/models/choosegame/chooseWerewolf.dart';
 import 'package:partygames/models/choosegame/chooseDixit.dart';
 import 'package:partygames/models/dot.dart';
-import 'package:partygames/funktion.dart';
 
 class BottomSheets extends StatefulWidget {
-  BottomSheets({super.key});
+  const BottomSheets({super.key});
 
   @override
   State<BottomSheets> createState() => _BottomSheetsState();
@@ -41,7 +40,7 @@ class _BottomSheetsState extends State<BottomSheets> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.2,
       child: Container(
         alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
@@ -57,13 +56,13 @@ class _BottomSheetsState extends State<BottomSheets> {
               controller: controller,
               scrollDirection: Axis.horizontal,
               onPageChanged: pageNumber,
-              children: [
+              children: const [
                 ChooseWerewolf(),
-                const ChooseDixit(),
+                ChooseDixit(),
               ],
             ),
             Container(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.bottomLeft,
               margin: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * 0.02,
               ),
